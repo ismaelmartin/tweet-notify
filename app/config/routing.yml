@@ -1,0 +1,4 @@
+infrastructure:
+    resource: "@InfrastructureBundle/Resources/config/routing.yml"
+    prefix:   /
+
