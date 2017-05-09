@@ -7,7 +7,7 @@ class User
     /**
      * @var UserId
      */
-    protected $userId;
+    protected $id;
 
     /**
      * @var string
@@ -31,7 +31,7 @@ class User
      */
     public function __construct(UserId $userId, $email)
     {
-        $this->userId = $userId;
+        $this->id = $userId;
         $this->email = $email;
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
@@ -40,15 +40,15 @@ class User
     /**
      * @return UserId
      */
-    public function id()
+    public function id(): UserId
     {
-        return $this->userId;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function email()
+    public function email(): string
     {
         return $this->email;
     }

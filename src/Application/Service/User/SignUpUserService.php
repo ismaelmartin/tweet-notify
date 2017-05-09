@@ -31,6 +31,6 @@ class SignUpUserService implements ApplicationService
             $email
         );
 
-        $this->userRepository->create($user);
+        $this->userRepository->save($user);
     }
 }

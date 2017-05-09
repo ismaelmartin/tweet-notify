@@ -1,0 +1,10 @@
+Domain\Model\User\User:
+    type: entity
+    table: user
+    embedded:
+        id:
+            class: Domain\Model\User\UserId
+    fields:
+        email:
+            type: string
+            length: 150
