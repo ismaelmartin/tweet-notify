@@ -20,6 +20,11 @@ interface UserRepository
     public function findByEmail($email);
 
     /**
+     * @return User[]
+     */
+    public function findAll();
+
+    /**
      * @param User $user
      */
     public function save(User $user);

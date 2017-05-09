@@ -1,4 +1,11 @@
 services:
-#    infrastructure.example:
-#        class: InfrastructureBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    #Application services
+    application_service_user_signup:
+        class: Application\Service\User\SignUpUserService
+        arguments: ["@doctrine_repository_user"]
+
+    #Repositories
+    doctrine_repository_user:
+        class: InfrastructureBundle\Repository\User\DoctrineUserRepository
+        arguments: ["@doctrine.orm.entity_manager"]

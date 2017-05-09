@@ -59,10 +59,25 @@ class DoctrineUserRepository implements UserRepository
     }
 
     /**
+     * @return User[]
+     */
+    public function findAll()
+    {
+        $qb = $this
+            ->em
+            ->createQueryBuilder()
+            ->select('u')
+            ->from(self::REPO_NAME, 'u')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * @param User $user
      * @return void
      */
-    public function save(User $user): void
+    public function save(User $user)
     {
         $this->em->persist($user);
         $this->em->flush();
