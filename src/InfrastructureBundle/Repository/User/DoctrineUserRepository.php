@@ -9,7 +9,7 @@ use Domain\Repository\User\UserRepository;
 
 class DoctrineUserRepository implements UserRepository
 {
-    const REPO_NAME = 'InfrastructureBundle:User';
+    const REPO_NAME = 'Domain:User';
 
     private $em;
 
@@ -26,25 +26,45 @@ class DoctrineUserRepository implements UserRepository
      * @param UserId $userId
      * @return User
      */
-    public function findById(UserId $userId)
+    public function findById(UserId $userId): User
     {
-        // TODO: Implement findById() method.
+        $qb = $this
+            ->em
+            ->createQueryBuilder()
+            ->select('u')
+            ->from(self::REPO_NAME, 'u')
+            ->where('u.id = :id')
+            ->setParameter('id', $userId->id())
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     /**
      * @param string $email
      * @return User
      */
-    public function findByEmail($email)
+    public function findByEmail($email): User
     {
-        // TODO: Implement findByEmail() method.
+        $qb = $this
+            ->em
+            ->createQueryBuilder()
+            ->select('u')
+            ->from(self::REPO_NAME, 'u')
+            ->where('u.email = :email')
+            ->setParameter('email', $email)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     /**
      * @param User $user
+     * @return void
      */
-    public function create(User $user)
+    public function save(User $user): void
     {
-        // TODO: Implement create() method.
+        $this->em->persist($user);
+        $this->em->flush();
     }
 }

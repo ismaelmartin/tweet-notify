@@ -22,5 +22,5 @@ interface UserRepository
     /**
      * @param User $user
      */
-    public function create(User $user);
+    public function save(User $user);
 }
