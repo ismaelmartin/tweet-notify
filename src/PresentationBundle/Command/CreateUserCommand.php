@@ -2,8 +2,7 @@
 
 namespace PresentationBundle\Command;
 
-use Domain\Model\User\User;
-use Domain\Model\User\UserId;
+use Application\Command\User\SignUpUserCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,11 +19,9 @@ class CreateUserCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repository = $this->getContainer()->get('doctrine_repository_user');
-        $user = new User(new UserId(), 'isma1024@gmail.com');
+        $commandHandler = $this->getContainer()->get('command_handler');
+        $commandHandler->execute(new SignUpUserCommand('isma1024@gmail.com'));
 
-        $repository->save($user);
-
-        $output->writeln("User created.");
+        $output->writeln('User created.');
     }
 }

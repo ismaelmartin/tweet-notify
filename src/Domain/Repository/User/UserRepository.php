@@ -9,13 +9,13 @@ interface UserRepository
 {
     /**
      * @param UserId $userId
-     * @return User
+     * @return User|null
      */
     public function findById(UserId $userId);
 
     /**
      * @param string $email
-     * @return User
+     * @return User|null
      */
     public function findByEmail($email);
 

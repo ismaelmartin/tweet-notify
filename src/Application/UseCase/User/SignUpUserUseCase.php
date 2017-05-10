@@ -1,14 +1,16 @@
 <?php
 
-namespace Application\Service\User;
+namespace Application\UseCase\User;
 
-use Application\Service\ApplicationService;
+use Application\Command\Command;
+use Application\Command\User\SignUpUserCommand;
+use Application\UseCase\UseCase;
 use Domain\Exception\User\UserAlreadyExistsException;
 use Domain\Model\User\User;
 use Domain\Model\User\UserId;
 use Domain\Repository\User\UserRepository;
 
-class SignUpUserService implements ApplicationService
+class SignUpUserUseCase implements UseCase
 {
     private $userRepository;
 
@@ -17,9 +19,14 @@ class SignUpUserService implements ApplicationService
         $this->userRepository = $userRepository;
     }
 
-    public function execute($request = null)
+    public function getManagedCommand()
     {
-        $email = $request->email();
+        return SignUpUserCommand::class;
+    }
+
+    public function execute(Command $command)
+    {
+        $email = $command->email();
 
         $user = $this->userRepository->findByEmail($email);
         if (null !== $user) {
@@ -32,5 +39,7 @@ class SignUpUserService implements ApplicationService
         );
 
         $this->userRepository->save($user);
+
+        return $user;
     }
 }

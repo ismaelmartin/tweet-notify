@@ -24,9 +24,9 @@ class DoctrineUserRepository implements UserRepository
 
     /**
      * @param UserId $userId
-     * @return User
+     * @return User|null
      */
-    public function findById(UserId $userId): User
+    public function findById(UserId $userId)
     {
         $qb = $this
             ->em
@@ -42,9 +42,9 @@ class DoctrineUserRepository implements UserRepository
 
     /**
      * @param string $email
-     * @return User
+     * @return User|null
      */
-    public function findByEmail($email): User
+    public function findByEmail($email)
     {
         $qb = $this
             ->em

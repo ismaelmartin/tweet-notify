@@ -37,19 +37,18 @@ class User
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * @return UserId
-     */
     public function id(): UserId
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function email(): string
     {
         return $this->email;
+    }
+
+    public function __toString(): string
+    {
+        return $this->email();
     }
 }

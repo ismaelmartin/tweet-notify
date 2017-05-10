@@ -1,9 +1,15 @@
 services:
 
-    #Application services
-    application_service_user_signup:
-        class: Application\Service\User\SignUpUserService
+    #CommandHandler
+    command_handler:
+        class: Application\Command\CommandHandler
+
+    #Application UseCase
+    application_usecase_user_signup:
+        class: Application\UseCase\User\SignUpUserUseCase
         arguments: ["@doctrine_repository_user"]
+        tags:
+            - { name: use_case }
 
     #Repositories
     doctrine_repository_user:
