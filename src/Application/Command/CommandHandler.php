@@ -37,6 +37,8 @@ class CommandHandler
 
             return new Response($result, Response::HTTP_OK);
         } catch (DomainException $e) {
+            return new Response($e->getMessage(), $e->getCode());
+        } catch (\Exception $e) {
             return new Response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

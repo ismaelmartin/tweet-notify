@@ -13,5 +13,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(UserId::class, $user->id());
         $this->assertEquals('email@email.com', $user->email());
+        $this->assertEquals('email@email.com', $user);
     }
 }

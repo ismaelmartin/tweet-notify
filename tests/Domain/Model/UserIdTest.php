@@ -12,6 +12,7 @@ class UserIdTest extends \PHPUnit_Framework_TestCase
         $userId = new UserId();
 
         $this->assertTrue(is_string($userId->id()));
+        $this->assertEquals($userId->id(), $userId);
     }
 
     /**
