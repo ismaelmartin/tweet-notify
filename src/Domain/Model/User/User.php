@@ -2,6 +2,8 @@
 
 namespace Domain\Model\User;
 
+use Domain\Exception\User\EmailValidationException;
+
 class User
 {
     /**
@@ -13,6 +15,11 @@ class User
      * @var string
      */
     protected $email;
+
+    /**
+     * @var string
+     */
+    protected $twitterAccount;
 
     /**
      * @var \DateTime
@@ -28,11 +35,19 @@ class User
      * User constructor.
      * @param UserId $userId
      * @param $email
+     * @param $twitterAccount
+     * @throws EmailValidationException
      */
-    public function __construct(UserId $userId, $email)
+    public function __construct(UserId $userId, $email, $twitterAccount)
     {
         $this->id = $userId;
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new EmailValidationException();
+        }
+
         $this->email = $email;
+        $this->twitterAccount = $twitterAccount;
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
@@ -45,6 +60,11 @@ class User
     public function email(): string
     {
         return $this->email;
+    }
+
+    public function twitterAccount(): string
+    {
+        return $this->twitterAccount;
     }
 
     public function __toString(): string

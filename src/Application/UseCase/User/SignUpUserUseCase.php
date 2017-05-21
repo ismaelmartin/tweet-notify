@@ -35,7 +35,8 @@ class SignUpUserUseCase implements UseCase
 
         $user = new User(
             new UserId(),
-            $email
+            $email,
+            $command->twitterAccount()
         );
 
         $this->userRepository->save($user);

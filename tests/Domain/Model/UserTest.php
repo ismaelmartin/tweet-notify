@@ -2,6 +2,8 @@
 
 namespace Domain\Model\User;
 
+use Domain\Exception\User\EmailValidationException;
+
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -9,10 +11,24 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructAndGetters()
     {
-        $user = new User(new UserId(), 'email@email.com');
+        $email = 'email@email.com';
+        $twitterAccount = '@twitter';
+        $user = new User(new UserId(), $email, $twitterAccount);
 
         $this->assertInstanceOf(UserId::class, $user->id());
-        $this->assertEquals('email@email.com', $user->email());
-        $this->assertEquals('email@email.com', $user);
+        $this->assertEquals($email, $user->email());
+        $this->assertEquals($twitterAccount, $user->twitterAccount());
+        $this->assertEquals($email, $user);
     }
+
+//    /**
+//     * @test
+//     * @expectedException EmailValidationException
+//     */
+//    public function testInvalidEmailThrowAnException()
+//    {
+//        $invalidEmail = 'email';
+//        $twitterAccount = '@twitter';
+//        $user = new User(new UserId(), $invalidEmail, $twitterAccount);
+//    }
 }

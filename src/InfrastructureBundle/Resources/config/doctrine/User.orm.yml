@@ -8,3 +8,10 @@ Domain\Model\User\User:
         email:
             type: string
             length: 150
+        twitterAccount:
+            type: string
+            length: 50
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime

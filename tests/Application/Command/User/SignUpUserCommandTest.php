@@ -10,8 +10,10 @@ class SignUpUserCommandTest extends \PHPUnit_Framework_TestCase
     public function testConstructAndGetters()
     {
         $email = 'email@email.com';
-        $command = new SignUpUserCommand($email);
+        $twitterAccount = '@twitter';
+        $command = new SignUpUserCommand($email, $twitterAccount);
 
         $this->assertEquals($email, $command->email());
+        $this->assertEquals($twitterAccount, $command->twitterAccount());
     }
 }
