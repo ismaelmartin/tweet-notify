@@ -11,6 +11,12 @@ services:
         tags:
             - { name: use_case }
 
+    application_usecase_user_list:
+        class: Application\UseCase\User\ListUsersUseCase
+        arguments: ["@doctrine_repository_user"]
+        tags:
+            - { name: use_case }
+
     #Repositories
     doctrine_repository_user:
         class: InfrastructureBundle\Repository\User\DoctrineUserRepository
